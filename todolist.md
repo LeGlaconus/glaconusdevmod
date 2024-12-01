@@ -1,0 +1,67 @@
+# To-do list:
+## "Easy" to implement
+- [X] util_movewith (almost finished : needs more modes/performance changes)
+  - Modes : TP to origin / relative tp / relactive tp that cares about angles (a func_rotating would make an entity spin around itself and not oscillate)
+- [ ] studio_model (CStudioModel : is supposed to be used like CBeam or CSprite)
+  - [ ] Make a hands glazing animation for when getting the suit
+- [ ] trigger_look
+- [ ] trigger_timer
+- [ ] trigger_random
+- [ ] weapon_flare
+- [ ] filter_* entities for trigger_*
+- [ ] env_soundscape
+  - Soundscape blending
+- [ ] Flashbang grunts can use
+- [ ] item_keycard
+  - Rename item_security
+  - Make it so it appears on the HUD
+  - LEVEL DESIGN NOTE : Keycard usage is lame : it shouldn't be used like in Doom/Quake and more like in that one mod I played where it's a cool bonus that encourages player exploration
+- [ ] item_generic (don't know why I wrote that one, probably not that useful)
+- [ ] ai_* entities
+  - ai_sound (for adding sounds/smells the AI can react to)
+  - ai_scriptedschedule (like in HL2, could make combat encounter much more interesting)
+  - ai_lead? (think more about that)
+- [ ] Patrolling system (not the shitty Quake one that barely works in HL)
+  - Scripted animations, field of view, rally points, advanced communication/teamwork
+- [ ] monster_worker/monster_construction(_)worker
+  - Would be a friendly guy like Barney (make them share the same lines but with a different pitch)
+  - Would be seen on high places, usually on metal trusses
+- [ ] AI changes
+  - [ ] Make barneys reload their guns
+  - [ ] Make barneys check if they are firing at the player
+  - [ ] Make grunts check twice if they're gonna blow themself up because they're really dumb sometimes
+  - [ ] Make scientists stop dancing when being hit (make them punch the player like in the beytah ?)
+  - [ ] Move h_ai.cpp code in CBaseMonster
+- [ ] Killable sitting monsters
+  - Make sitting monsters the same entity as their base form and use a flag instead ?
+  - Sitting/Leaving chair animations (would be hella cool)
+- [ ] Gun scientist (like that one in the Lambda complex ?)
+  - Would be cool as "unique" character you have to wlak with
+- [ ] Implement featureful SDK cool features
+- [ ] monster_panthereye (?)
+- [ ] Monster like the tentacles for a chapter based around it ? (tentacles that crawl through corridors maybe ?)
+## Probably out of the scope of the project
+- [ ] Particle system (a pretty basic one)
+- [ ] Rewrite the beam system
+  - Ropes ?
+- [ ] Cooler func_vehicle
+  - Is necessary for that one desert level idea I had
+- [ ] Automatic DSP like in HL2
+  - [ ] rename env_sound to env_dsp
+  - [ ] trigger_dsp (because it's easier to work with bounding boxes)
+- [ ] Make AI use the hint keyvalue of info_nodes (Hint System)
+  - I don't need to make it necesserily like the HL2 one, I could make so monsters could pick up bounding boxes from a brush entity as a cover space
+- [ ] Scripted sequence smooth movement
+  - Make a scripted sequence interpolate through path_tracks/corners (or its own entity) to have an uninterrupted smooth movement
+  - Smooth animation blend ? (I think Valve tried to do that but didn't had the time to finish it)
+- [ ] Sequence files (like in CS:CZ, but better ***cool glasses emoji***)
+- [ ] Replace the renderer with the Trinity one
+  - Add a fullbright texture system
+  - Software water
+  - 3d skyboxes made easy
+  - Will use "modern" rendering techniques so wpolys can be higher than ever
+  - Custom render modes (smth like the wireframe visual effect in SE would be nice for holograms)
+  - Remember to remove the fast inverse square root function because we are in 2024
+- [ ] ImGui implementation
+  - Custom main menu (I hope it's possible)
+- [ ] Custom version of SDHLT compilers
