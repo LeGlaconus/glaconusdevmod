@@ -4,14 +4,31 @@
   - Modes : TP to origin / relative tp / relactive tp that cares about angles (a func_rotating would make an entity spin around itself and not oscillate)
 - [ ] studio_model (CStudioModel : is supposed to be used like CBeam or CSprite)
   - [ ] Make a hands glazing animation for when getting the suit
+- [ ] env_shake "In Air" flag along its modified shake method
+  - [ ] Make explosions shake the player view
+- [ ] Beta Shrapnel smoke attachable to models / fire attachable to models
 - [ ] trigger_look
 - [ ] trigger_timer
 - [ ] trigger_random
+- [ ] trigger_logic
+  - Logic gates; they're already possible but I want to make the process simpler
+- [ ] env_hudhint
+  - HL2 style hud hint that would make a tutorial level useless
+- [ ] more util_* entities
+  - [ ] util_(console)print
+  - [ ] util_(dev)message (HL2 like point_message for prototyping)
+  - [ ] util_rotate (Rotates an entity around a specified point/entity / very customisable)
+  - [ ] util_remove / trigger_util_remove (removes (a) specified filtered entity(ies)
+  - [ ] util_tempentity (allow entitiy origins as a position / support all modes)
+  - [ ] util_update (changes the nextthink of an entity or calls its Think() directly)
+  - [ ] util_setsolid (already possible but it could check if the specified solidity is valid for a certain entity)
 - [ ] weapon_flare
 - [ ] filter_* entities for trigger_*
 - [ ] env_soundscape
   - Soundscape blending
 - [ ] Flashbang grunts can use
+- [ ] env_fire
+  - Fire propagation ?
 - [ ] item_keycard
   - Rename item_security
   - Make it so it appears on the HUD
@@ -35,6 +52,8 @@
 - [ ] Killable sitting monsters
   - Make sitting monsters the same entity as their base form and use a flag instead ?
   - Sitting/Leaving chair animations (would be hella cool)
+- [ ] Expensive func_pushable
+  - An entity that has it's own physics code and checks every plane for collision instead of doing hull calculations
 - [ ] Gun scientist (like that one in the Lambda complex ?)
   - Would be cool as "unique" character you have to wlak with
 - [ ] Implement featureful SDK cool features
@@ -55,13 +74,17 @@
   - Make a scripted sequence interpolate through path_tracks/corners (or its own entity) to have an uninterrupted smooth movement
   - Smooth animation blend ? (I think Valve tried to do that but didn't had the time to finish it)
 - [ ] Sequence files (like in CS:CZ, but better ***cool glasses emoji***)
+- [ ] ambient_vox
+  - A recreation of the original Bells lab code for "realtime" vox word creation
 - [ ] Replace the renderer with the Trinity one
   - Add a fullbright texture system
   - Software water
   - 3d skyboxes made easy
   - Will use "modern" rendering techniques so wpolys can be higher than ever
   - Custom render modes (smth like the wireframe visual effect in SE would be nice for holograms)
+  - Chrome textures on something else than models
   - Remember to remove the fast inverse square root function because we are in 2024
 - [ ] ImGui implementation
   - Custom main menu (I hope it's possible)
 - [ ] Custom version of SDHLT compilers
+  - Mix SDHLT vrad with ericw's vrad to achieve crazy lighting ? (Phong shading and more)
