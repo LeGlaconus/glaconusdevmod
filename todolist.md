@@ -1,16 +1,18 @@
 # To-do list:
 ## "Easy" to implement
-- [X] util_movewith (almost finished : needs more modes/performance changes)
+- [X] util_movewith (almost finished : needs more modes/performance changes/crash with monsters)
   - Modes : TP to origin / relative tp / relactive tp that cares about angles (a func_rotating would make an entity spin around itself and not oscillate)
 - [ ] studio_model (CStudioModel : is supposed to be used like CBeam or CSprite)
   - [ ] Make a hands glazing animation for when getting the suit
+  - Scriptable
+  - Its Think() function can be replaced with ones from other entities (it can become a moving / rotating / penduling ? model / sprite)
 - [ ] env_shake "In Air" flag along its modified shake method
   - [ ] Make explosions shake the player view
 - [ ] Beta Shrapnel smoke attachable to models / fire attachable to models
 - [ ] trigger_look
 - [ ] trigger_timer
-- [ ] trigger_random
 - [ ] trigger_logic
+- [ ] ambient_generic "Audio Source" option
   - Logic gates; they're already possible but I want to make the process simpler
 - [ ] env_hudhint
   - HL2 style hud hint that would make a tutorial level useless
@@ -22,49 +24,84 @@
   - [ ] util_tempentity (allow entitiy origins as a position / support all modes)
   - [ ] util_update (changes the nextthink of an entity or calls its Think() directly)
   - [ ] util_setsolid (already possible but it could check if the specified solidity is valid for a certain entity)
+  - [ ] util_lightpattern (triggers a target depending on a predefined/custom lightpattern with a custom brightness threshold)
 - [ ] weapon_flare
-- [ ] filter_* entities for trigger_*
+- [ ] filter_* entities for trigger_* and func_*
+- [ ] func_fog
+  - Custom fog textures
+  - Creates multiple layer of a fog textures that becomes less "dense" the closer you get to it, good for level transitions, unaccessible dead-ends that still look interesting
 - [ ] env_soundscape
   - Soundscape blending
 - [ ] Flashbang grunts can use
 - [ ] env_fire
+- [ ] env_zoom (controls the player fov, can interpolate between two values)
+- [ ] HEV Zoom (prob useless tho)
   - Fire propagation ?
+- [ ] func_*clip entities along their custom textures
+  - [ ] func_playerclip
+  - [ ] func_pushableclip
+  - [ ] func_movetypeclip (excludes certain movetypes, e.g. restricting MOVETYPE_TOSS would block grenades / satchels / flares)
+  - [ ] func_filteredclip (uses a filter_* entity)
 - [ ] item_keycard
   - Rename item_security
   - Make it so it appears on the HUD
   - LEVEL DESIGN NOTE : Keycard usage is lame : it shouldn't be used like in Doom/Quake and more like in that one mod I played where it's a cool bonus that encourages player exploration
+- [ ] trigger_camera_model/attachment : for HL2/Portal "wakeup" sequences
 - [ ] item_generic (don't know why I wrote that one, probably not that useful)
+- [ ] func_breakable "Fracturable" flag
+  - Switches texture (like a func_wall/button) to a fractured (if used correctly) one on first impact / half health
 - [ ] ai_* entities
   - ai_sound (for adding sounds/smells the AI can react to)
-  - ai_scriptedschedule (like in HL2, could make combat encounter much more interesting)
+  - ai_scriptedschedule (like in HL2, could make combat encounter / quick scripted stuff much more interesting)
   - ai_lead? (think more about that)
 - [ ] Patrolling system (not the shitty Quake one that barely works in HL)
   - Scripted animations, field of view, rally points, advanced communication/teamwork
 - [ ] monster_worker/monster_construction(_)worker
   - Would be a friendly guy like Barney (make them share the same lines but with a different pitch)
   - Would be seen on high places, usually on metal trusses
+  - Uses base games melee weapons / junk as weapons
+  - Can throw them for an interesting attack if they have one very close to them (? makes an interesting scripted sequence but is maybe too goofy for an actual attack)
+- [ ] monster_xen_mantaray (That xen creature as a npc)
+  - Custom model
+  - Functions like the osprey : cycles through paths and has a dropout point
+  - Spawns predefined monsters
+  - Can also be destined to destroy stuff
 - [ ] AI changes
   - [ ] Make barneys reload their guns
   - [ ] Make barneys check if they are firing at the player
   - [ ] Make grunts check twice if they're gonna blow themself up because they're really dumb sometimes
   - [ ] Make scientists stop dancing when being hit (make them punch the player like in the beytah ?)
   - [ ] Move h_ai.cpp code in CBaseMonster
+  - [ ] Flyer flock : the name of the flock in the editor should be the name of every spawned flock
+- [ ] Actbusy system
 - [ ] Killable sitting monsters
   - Make sitting monsters the same entity as their base form and use a flag instead ?
   - Sitting/Leaving chair animations (would be hella cool)
+- [ ] Low-Poly / Less AI expensive monster versions for faraway scripted stuff
 - [ ] Expensive func_pushable
   - An entity that has it's own physics code and checks every plane for collision instead of doing hull calculations
+  - Could bypass corpses, rotate and be less jarring
+- [ ] trigger_playermovement (auto-duck / disable jump)
+- [ ] game_playerproxy
+  - Can trigger an entity when the player does a certain action (no more flashlight battery, the player crouched / jump / died)
+  - Can affect the player with another mode : disable hud / crosshair, lower the weapon (?), force the player to jump / duck, enables player death ability / fall damage
+- [ ] func_rain/weather
 - [ ] Gun scientist (like that one in the Lambda complex ?)
-  - Would be cool as "unique" character you have to wlak with
+  - Would be cool as "unique" character you have to walk with
 - [ ] Implement featureful SDK cool features
 - [ ] monster_panthereye (?)
+- [ ] trigger_stress (prob not important)
+   - When the player goes through, the screen becomes more red, the fov diminishes and heartbeat sounds start playing (slowed down game ? should be complicated whithout host_timescale)
 - [ ] Monster like the tentacles for a chapter based around it ? (tentacles that crawl through corridors maybe ?)
 ## Probably out of the scope of the project
 - [ ] Particle system (a pretty basic one)
+- [ ] env_sun
 - [ ] Rewrite the beam system
   - Ropes ?
 - [ ] Cooler func_vehicle
   - Is necessary for that one desert level idea I had
+- [ ] env_screenoverlay (shows a sprite somewhere on the screen, ex: the mod logo)
+- [ ] Accentuate player friction when close to an edge
 - [ ] Automatic DSP like in HL2
   - [ ] rename env_sound to env_dsp
   - [ ] trigger_dsp (because it's easier to work with bounding boxes)
@@ -73,18 +110,24 @@
 - [ ] Scripted sequence smooth movement
   - Make a scripted sequence interpolate through path_tracks/corners (or its own entity) to have an uninterrupted smooth movement
   - Smooth animation blend ? (I think Valve tried to do that but didn't had the time to finish it)
+- [ ] monster_puppet (like npc_puppet in Source, don't really see the utility though, fake mirrors ?)
 - [ ] Sequence files (like in CS:CZ, but better ***cool glasses emoji***)
 - [ ] ambient_vox
   - A recreation of the original Bells lab code for "realtime" vox word creation
 - [ ] Replace the renderer with the Trinity one
   - Add a fullbright texture system
   - Software water
+  - Dynamic skybox change in real time
   - 3d skyboxes made easy
   - Will use "modern" rendering techniques so wpolys can be higher than ever
   - Custom render modes (smth like the wireframe visual effect in SE would be nice for holograms)
-  - Chrome textures on something else than models
+  - Chrome textures on something else than models / Glint to mimic shiny surfaces
+  - Mirrors
   - Remember to remove the fast inverse square root function because we are in 2024
 - [ ] ImGui implementation
   - Custom main menu (I hope it's possible)
+  - Success/Achievement system
+- [ ] Interprocess communication
 - [ ] Custom version of SDHLT compilers
   - Mix SDHLT vrad with ericw's vrad to achieve crazy lighting ? (Phong shading and more)
+  - Func_illusionary wouldn't need to generate clipnodes
